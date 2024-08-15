@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Genero>
+<!--Se coloca esto para tener el enlace del modelo-->
+@{
+	ViewData["Title"] = "Listado Generos";
+}
+
+<h1>Listado de generos ingresados</h1>
+<h5>El tipo de genero para agregar a los usuarios</h5>
+
+<!--Este es el boton para llamar la vista crear  asp-action="Crear" dependiendo del metodo  -->
+<a asp-action="Crear" class="btn btn-primary mb-3">Crear nuevo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--Muesta todos los registros con Foreach -->
+        @foreach (var genero in Model)
+        {
+            <tr>
+                <td>
+                    <!--Este es el boton para llamar la vista Editar  asp-action="Editar" dependiendo del metodo  -->
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@genero.IdGenero">Editar</a>
+                    <a class="btn btn-danger">Borrar</a>
+                </td>
+                <td>
+                    @genero.Nombre
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

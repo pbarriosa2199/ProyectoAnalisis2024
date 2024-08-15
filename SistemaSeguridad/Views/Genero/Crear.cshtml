@@ -1,0 +1,27 @@
+﻿@model Genero
+<!--Se coloca esto para tener el enlace del modelo-->
+@{
+    ViewData["Title"] = "Crear Genero";
+}
+
+<h1>Crear Genero</h1>
+<h5>Agregar el tipo de genero2</h5>
+<!--Con esto hacemos las validaciones del modelo-->
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<!--Este es el formulario de crear el registro
+*asp-action="Crear" este accion manda a llamar la crecion del registro no es el mismo del boton -->
+<form asp-action="Crear">
+    <div class="mb-2">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input type="text" asp-for="Nombre" class="form-control"/>
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-dark">Enviar</button>
+    <a class="btn btn-secundary" asp-action="Index">Cancelar</a>
+</form>
+
+<!--Esta parte de la de jquery para mostrar el error en la parte de abajo-->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
