@@ -25,7 +25,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Genero" asp-action="Index">Genero</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Empresa" asp-action="Index">Empresa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Sucursal" asp-action="Index">Sucursal</a>
+                        </li>
                     </ul>
+                    <partial name="_LinksLogin" />
                 </div>
             </div>
         </nav>
@@ -43,6 +50,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

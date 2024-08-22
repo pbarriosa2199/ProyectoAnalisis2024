@@ -1,17 +1,31 @@
-﻿namespace SistemaSeguridad.Servicios
+﻿using System.Security.Claims;
+
+namespace SistemaSeguridad.Servicios
 {
 
-    //Se crear las interfaces para acceder a la informacion en el Controller similar como lo haciamos en spring
     public interface IServicioUsuarios
     {
         string ObtenerUsuarioId();
     }
-    //Este metodo es el que devuelve que usuario esta en sesion
     public class ServicioUsuarios: IServicioUsuarios
     {
-        //retorna el usuario en este momento esta quemado falta implementar eso
+        private readonly HttpContext httpContext;
+        public ServicioUsuarios(IHttpContextAccessor httpContextAccessor)
+        {
+            httpContext = httpContextAccessor.HttpContext;
+        }
         public string ObtenerUsuarioId() {
-            return "system";
+
+            if (httpContext.User.Identity.IsAuthenticated)
+            {
+                var idClaim = httpContext.User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
+                var idUsuario = idClaim.Value;
+                return idUsuario;
+            }
+            else 
+            {
+                throw new ApplicationException("El usuairo no esta autenticado");
+            }
         }
     }
 }

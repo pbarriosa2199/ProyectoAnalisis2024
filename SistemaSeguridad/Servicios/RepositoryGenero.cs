@@ -1,17 +1,19 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using SistemaSeguridad.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SistemaSeguridad.Servicios
 {
-    //Se crea un interfaz para acceder a la informacion en el Controller
+    //Se crea una interfaz para acceder a la informacion en el Controller
     public interface IRepositoryGenero
     {
         Task Actualizar(Genero genero);
+        Task Borrar(int idGenero);
         Task Crear(Genero genero);
         Task<bool> Existe(string nombre);
         Task<IEnumerable<Genero>> Obtener();
-        Task<Genero> ObtenerPorId(int idgenero);
+        Task<Genero> ObtenerPorId(int idgenero, string usuarioCreacion);
     }
     public class RepositoryGenero: IRepositoryGenero
     {
@@ -33,9 +35,10 @@ namespace SistemaSeguridad.Servicios
             using var connection = new SqlConnection(connectionString);
             //Aqui se inserta el query por el momento es todo eso pero se crearan procedimientos almacenados en SQl
             //para no estar escribiendo querys aqui y sera mas practico
-            var id = await connection.QuerySingleAsync<int>(@"insert into GENERO (Nombre, FechaCreacion, UsuarioCreacion)
-                                                    values(@Nombre, GETDATE(), @UsuarioCreacion);
-                                                    select SCOPE_IDENTITY();", genero);
+            var id = await connection.QuerySingleAsync<int>("spgeneroinserta",
+                                                             new { Nombre = genero.Nombre,
+                                                             UsuarioCreacion = genero.UsuarioCreacion}, 
+                                                             commandType: System.Data.CommandType.StoredProcedure);
             genero.IdGenero = id;
         }
 
@@ -71,13 +74,20 @@ namespace SistemaSeguridad.Servicios
         }
 
         //Se busca el registro por ID
-        public async Task<Genero> ObtenerPorId(int idgenero)
+        public async Task<Genero> ObtenerPorId(int idgenero, string usuarioCreacion)
         {
             //Se usa la variable conexion
             using var connection = new SqlConnection(connectionString);
             //Retorna el registro encontrado con el id para hacer el update
-            return await connection.QueryFirstOrDefaultAsync<Genero>(@"select IdGenero, Nombre, FechaCreacion from GENERO 
-                                                                        where IdGenero = @IdGenero", new {idgenero});
+            return await connection.QueryFirstOrDefaultAsync<Genero>(@"select IdGenero, Nombre, FechaCreacion,UsuarioCreacion  
+                                                                        from GENERO where IdGenero = @idgenero and 
+                                                                        UsuarioCreacion = @usuarioCreacion", new {idgenero, usuarioCreacion});
+        }
+
+        public async Task Borrar(int idGenero) 
+        { 
+            using var connectio = new SqlConnection(connectionString);
+            await connectio.ExecuteAsync("delete from GENERO where IdGenero = @IdGenero", new { idGenero });
         }
     }
 

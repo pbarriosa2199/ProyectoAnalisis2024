@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+using SistemaSeguridad.Models;
 using SistemaSeguridad.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,30 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IRepositoryGenero, RepositoryGenero>();
 builder.Services.AddTransient<IServicioUsuarios, ServicioUsuarios>();
+builder.Services.AddTransient<IRepositoyEmpresa, RepositoryEmpresa>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<IReposirorySucursal, RepositorySucursal>();
+builder.Services.AddTransient<IRepositoryUsuarios, RepositoryUsuarios>();
+builder.Services.AddTransient<IUserStore<UsuarioPrueba>, UsuarioStore>();
+builder.Services.AddTransient<SignInManager<UsuarioPrueba>>();
+builder.Services.AddIdentityCore<UsuarioPrueba>(opciones =>
+{
+	opciones.Password.RequireDigit = false;
+	opciones.Password.RequireLowercase = false;
+	opciones.Password.RequireUppercase = false;
+	opciones.Password.RequireNonAlphanumeric = false;
+});
+
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+	options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+	options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
+}).AddCookie(IdentityConstants.ApplicationScheme, opciones =>
+{
+	opciones.LoginPath = "/Usuario/Login";
+
+});
 
 var app = builder.Build();
 
@@ -21,6 +47,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

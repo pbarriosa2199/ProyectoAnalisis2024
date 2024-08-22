@@ -1,10 +1,17 @@
-﻿namespace SistemaSeguridad.Models
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+
+namespace SistemaSeguridad.Models
 {
 	public class Empresa
 	{
         public int IdEmpresa { get; set; }
+		[Required(ErrorMessage = "El campo {0} es requerido")]
+		[Remote(action: "VerifarEmpresa", controller: "Empresa")]
 		public string Nombre { get; set; }
-        public string Direccion { get; set; }
+		[Required(ErrorMessage = "El campo {0} es requerido")]
+		public string Direccion { get; set; }
+		[Required(ErrorMessage = "El campo {0} es requerido")]
 		public string Nit { get; set; }
 		public int PasswordCantidadMayusculas { get; set; }
 		public int PasswordCantidadMinusculas { get; set; }

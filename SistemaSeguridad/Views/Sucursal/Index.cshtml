@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Sucursal>
+
+@{
+    ViewData["Title"] = "Listado de Sucursales";
+}
+
+<h1>Listado de sucursales ingresados</h1>
+
+<a asp-action="Crear" class="btn btn-primary mb-3">Crear nuevo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sucursal in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary">Editar</a>
+                    <a class="btn btn-danger">Borrar</a>
+                </td>
+                <td>
+                    @sucursal.Nombre
+                </td>
+                <td>
+                    @sucursal.Direccion
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

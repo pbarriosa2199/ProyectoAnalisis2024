@@ -1,0 +1,59 @@
+﻿@model RegistroViewModel
+
+@{
+	ViewData["Title"] = "Registro";
+}
+
+<h1>Registro de usuario</h1>
+
+<form asp-action="Registro">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="mb-3">
+		<label asp-for="IdUsuario" class="form-label"></label>
+		<input asp-for="IdUsuario" class="form-control" />
+		<span asp-validation-for="IdUsuario" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Nombre" class="form-label"></label>
+		<input asp-for="Nombre" class="form-control" />
+		<span asp-validation-for="Nombre" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Apellido" class="form-label"></label>
+		<input asp-for="Apellido" class="form-control" />
+		<span asp-validation-for="Apellido" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="FechaNacimiento" class="form-label"></label>
+		<input asp-for="FechaNacimiento" class="form-control" />
+		<span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="CorreoElectronico" class="form-label"></label>
+		<input asp-for="CorreoElectronico" class="form-control" />
+		<span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Password" class="form-label"></label>
+		<input asp-for="Password" class="form-control" />
+		<span asp-validation-for="Password" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="TelefonoMovil" class="form-label"></label>
+		<input asp-for="TelefonoMovil" class="form-control" />
+		<span asp-validation-for="TelefonoMovil" class="text-danger"></span>
+	</div>
+
+	<button class="btn btn-primary">Registro</button>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

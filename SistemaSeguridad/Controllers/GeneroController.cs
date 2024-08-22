@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaSeguridad.Models;
 using SistemaSeguridad.Servicios;
 
@@ -19,12 +20,13 @@ namespace SistemaSeguridad.Controllers
 			this.servicioUsuarios = servicioUsuarios;
 		}
 
-        //Este metodo retorna la vista Index con el listado de registros creados
-        //Estos metodos nos ayudan a navegar dentro de las distinas paginas del proyecto
-		//No se debe que confundir los metodos del CRUD que se llaman alguas veces igual
+		//Este metodo retorna la vista Index con el listado de registros creados
+		//Estos metodos nos ayudan a navegar dentro de las distinas paginas del proyecto
+		//No se debe que confundir los metodos del CRUD que se llaman algunas veces igual
 		//Para nombrar el metodo es la siguiente si creee un vista llamada "Nuevo" tengo que colocar el nombre "Nuevo"
-        //para que en el html con esta etiqueta lo mande a llamar asp-action="Index()" asi me retorna la vista
+		//para que en el html con esta etiqueta lo mande a llamar asp-action="Index()" asi me retorna la vista
 		//que deseo mostroar.. 
+		[Authorize]
         public async Task<IActionResult> Index() 
 		{
 			//En esta parte accedemos al metodo obtener que se encuntra en la clase  Servicios/ReporitoryGenero
@@ -76,26 +78,66 @@ namespace SistemaSeguridad.Controllers
 		//Este metodo obtiene el registro con su id para poder editarlos 
 		//Todavia no funciona al 100
 		[HttpGet]
-		public async Task<ActionResult> Editar(int idgenero) 
-		{ 
+		public async Task<ActionResult> Editar(int IdGenero) 
+		{
 			//Este metodo devuelve el registro con su id para ser modificado
-			var genero = await repositoryGenero.ObtenerPorId(idgenero);
-			return View(genero);
+			var usuarioCreacion = servicioUsuarios.ObtenerUsuarioId();
+			var generotipo = await repositoryGenero.ObtenerPorId(IdGenero, usuarioCreacion);
+
+			if (generotipo is null) 
+			{ 
+				return RedirectToAction("Index", "Home");
+			}
+
+			return View(generotipo);
 		}
 
         //Este metodo hace el update del registro que se encuentra en el metodo de arriba ObtenerPorId(idgenero);
         [HttpPost]
 		public async Task<ActionResult> Editar(Genero genero) 
-		{ 
+		{
+			var usuarioCreacion = servicioUsuarios.ObtenerUsuarioId();
 			//Aqui hace el update a la base de datos del registro 
+			var tipocuentaExiste = await repositoryGenero.ObtenerPorId(genero.IdGenero, usuarioCreacion);
+
+			if (tipocuentaExiste is null) 
+			{ 
+				return RedirectToAction("Index", "Home");
+			}
 			await repositoryGenero.Actualizar(genero);
             //Y cuando se hace el update nos devuelve a la vista index
             return RedirectToAction("Index");
 		}
 
-        //Este metodo tambien verifica si el registro ya existe este es el utiliado en el modelo
-		//[Remote(action: "VerifarGenero", controller:"Genero")]
-        [HttpGet]
+		public async Task<IActionResult> Borrar(int idGenero) 
+		{
+			var usuarioCreacion = servicioUsuarios.ObtenerUsuarioId();
+			var genero = await repositoryGenero.ObtenerPorId(idGenero, usuarioCreacion);
+
+			if (genero is null)		
+			{
+                return RedirectToAction("Index", "Home");
+            }
+			return View(genero);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> BorrarGenero(int idGenero) 
+		{
+            var usuarioCreacion = servicioUsuarios.ObtenerUsuarioId();
+            var genero = await repositoryGenero.ObtenerPorId(idGenero, usuarioCreacion);
+            if (genero is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+			await repositoryGenero.Borrar(idGenero);
+			return RedirectToAction("Index");
+
+        }
+
+            //Este metodo tambien verifica si el registro ya existe este es el utiliado en el modelo
+            //[Remote(action: "VerifarGenero", controller:"Genero")]
+            [HttpGet]
 		public async Task<IActionResult> VerifarGenero(string nombre) 
 		{ 
 			var existeGenero = await repositoryGenero.Existe(nombre);

@@ -24,8 +24,8 @@
             <tr>
                 <td>
                     <!--Este es el boton para llamar la vista Editar  asp-action="Editar" dependiendo del metodo  -->
-                    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@genero.IdGenero">Editar</a>
-                    <a class="btn btn-danger">Borrar</a>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-IdGenero="@genero.IdGenero">Editar</a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-IdGenero="@genero.IdGenero">Borrar</a>
                 </td>
                 <td>
                     @genero.Nombre
