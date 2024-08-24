@@ -6,9 +6,12 @@ namespace SistemaSeguridad.Servicios
 {
 	public interface IRepositoyEmpresa
 	{
-		Task Crear(Empresa empresa);
+        Task ActualizarGeneral(Empresa empresa);
+        Task Borrar(int idEmpresa);
+        Task Crear(Empresa empresa);
 		Task<bool> Existe(string nombre);
 		Task<IEnumerable<Empresa>> Obtener();
+		Task<Empresa> ObtenerPorId(int idEmpresa);
 	}
 	public class RepositoryEmpresa: IRepositoyEmpresa
 	{
@@ -25,7 +28,7 @@ namespace SistemaSeguridad.Servicios
 			var id = await connection.QuerySingleAsync<int>("spempresainserta",
 															 new
 															 { 
-																Nombre = empresa.Nombre, Direccion = empresa.Direccion,
+																Nombre = empresa.Nombre, Direccion = empresa.Direccion, Nit = empresa.Nit,
 																PasswordCantidadMayusculas = empresa.PasswordCantidadMayusculas,
 																PasswordCantidadMinusculas = empresa.PasswordCantidadMinusculas,
 																PasswordCantidadCaracteresEspeciales = empresa.PasswordCantidadCaracteresEspeciales,
@@ -37,6 +40,11 @@ namespace SistemaSeguridad.Servicios
 																UsuarioCreacion = empresa.UsuarioCreacion
 															 },
 															 commandType: System.Data.CommandType.StoredProcedure);
+			
+			/*var id = await connection.QuerySingleAsync<int>(@"insert into EMPRESA(Nombre, Direccion, Nit,FechaCreacion,UsuarioCreacion)
+															values(@Nombre,@Direccion,@Nit,GETDATE(),@UsuarioCreacion);
+															select SCOPE_IDENTITY();", empresa);
+			*/
 			empresa.IdEmpresa = id;
 		}
 
@@ -54,5 +62,26 @@ namespace SistemaSeguridad.Servicios
 			return await connection.QueryAsync<Empresa>(@"select IdEmpresa, Nombre, Direccion, Nit from EMPRESA");
 		}
 
-	}
+		public async Task<Empresa> ObtenerPorId(int idEmpresa)
+		{
+			using var connection = new SqlConnection(connectionString);
+			return await connection.QueryFirstOrDefaultAsync<Empresa>(@"select IdEmpresa, Nombre, Direccion, Nit  
+                                                                        from EMPRESA where IdEmpresa = @IdEmpresa", new { idEmpresa});
+		}
+
+		public async Task Borrar(int idEmpresa)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync("delete from Empresa where IdEmpresa = @IdEmpresa", new { idEmpresa });
+        }
+
+        public async Task ActualizarGeneral(Empresa empresa)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync(@"update EMPRESA
+											set Nombre = @Nombre, Direccion = @Direccion, Nit = @Nit, 
+											FechaModificacion = GETDATE(), UsuarioModificacion = @UsuarioModificacion
+											where IdEmpresa = @IdEmpresa", empresa);
+        }
+    }
 }

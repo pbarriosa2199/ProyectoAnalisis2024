@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SistemaSeguridad.Models;
 using SistemaSeguridad.Servicios;
 
 namespace SistemaSeguridad.Controllers
@@ -23,7 +25,29 @@ namespace SistemaSeguridad.Controllers
 			return View();
 		}
 
-		[HttpGet]
+        [HttpPost]
+        public async Task<IActionResult> Crear(Empresa empresa)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(empresa);
+            }
+
+            empresa.UsuarioCreacion = servicioUsuarios.ObtenerUsuarioId();
+
+            var existeEmpresa = await repositoyEmpresa.Existe(empresa.Nombre);
+
+            if (existeEmpresa)
+            {
+                ModelState.AddModelError(nameof(empresa.Nombre), $"El nombre {empresa.Nombre} ya existe");
+                return View(empresa);
+            }
+            await repositoyEmpresa.Crear(empresa);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
 		public async Task<IActionResult> VerifarEmpresa(string nombre)
 		{
 			var existeEmpresa = await repositoyEmpresa.Existe(nombre);
@@ -34,5 +58,61 @@ namespace SistemaSeguridad.Controllers
 
 			return Json(true);
 		}
-	}
+
+        public async Task<IActionResult> Borrar(int idEmpresa) 
+		{
+			var empresa = await repositoyEmpresa.ObtenerPorId(idEmpresa);
+
+			if (empresa is null)
+			{
+				return RedirectToAction("Index", "Empresa");
+			}
+			return View(empresa);
+		}
+
+        [HttpPost]
+        public async Task<IActionResult> BorrarEmpresa(int idEmpresa)
+        {
+            try {
+                var empresa = await repositoyEmpresa.ObtenerPorId(idEmpresa);
+                if (empresa is null)
+                {
+                    return RedirectToAction("Index", "Empresa");
+                }
+                await repositoyEmpresa.Borrar(idEmpresa);
+                return RedirectToAction("Index");
+
+            } catch (Exception ex) {
+                throw new ApplicationException(ex + "No se puede borrar este registro");
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Editar(int idEmpresa)
+        {
+            var empresa = await repositoyEmpresa.ObtenerPorId(idEmpresa);
+
+            if (empresa is null)
+            {
+                return RedirectToAction("Index", "Empresa");
+            }
+
+            return View(empresa);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Editar(Empresa empresa)
+        {
+            empresa.UsuarioModificacion = servicioUsuarios.ObtenerUsuarioId();
+            var empresaExiste = await repositoyEmpresa.ObtenerPorId(empresa.IdEmpresa);
+
+            if (empresaExiste is null)
+            {
+                return RedirectToAction("Index", "Empresa");
+            }
+
+            await repositoyEmpresa.ActualizarGeneral(empresa);
+            return RedirectToAction("Index");
+        }
+    }
 }

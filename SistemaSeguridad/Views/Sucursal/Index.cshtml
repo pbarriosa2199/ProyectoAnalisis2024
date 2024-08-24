@@ -21,8 +21,8 @@
         {
             <tr>
                 <td>
-                    <a class="btn btn-primary">Editar</a>
-                    <a class="btn btn-danger">Borrar</a>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-IdSucursal="@sucursal.IdSucursal">Editar</a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-IdSucursal="@sucursal.IdSucursal">Borrar</a>
                 </td>
                 <td>
                     @sucursal.Nombre

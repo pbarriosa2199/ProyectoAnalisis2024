@@ -6,10 +6,13 @@ namespace SistemaSeguridad.Servicios
 {
 	public interface IReposirorySucursal
 	{
+		Task ActualizarGeneral(Sucursal sucursal);
+		Task Borrar(int idSucursal);
 		Task Crear(Sucursal sucursal);
 		Task<bool> Existe(string nombre);
 		Task<IEnumerable<Sucursal>> Obtener();
-	}
+        Task<Sucursal> ObtenerPorId(int idSucursal);
+    }
 	public class RepositorySucursal: IReposirorySucursal
     {
         private readonly string connectionString;
@@ -45,6 +48,29 @@ namespace SistemaSeguridad.Servicios
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryAsync<Sucursal>(@"select IdSucursal, Nombre, Direccion from SUCURSAL");
+        }
+
+        public async Task<Sucursal> ObtenerPorId(int idSucursal)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QueryFirstOrDefaultAsync<Sucursal>(@"select IdSucursal, Nombre, Direccion, IdEmpresa  
+                                                                        from SUCURSAL where IdSucursal = @IdSucursal", new { idSucursal });
+        }
+
+        public async Task Borrar(int idSucursal)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync("delete from SUCURSAL where IdSucursal = @IdSucursal", new { idSucursal });
+        }
+
+        public async Task ActualizarGeneral(Sucursal sucursal)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync(@"update SUCURSAL
+                                            set Nombre = @Nombre, Direccion = @Direccion, FechaModificacion = GETDATE(),
+                                            UsuarioModificacion = @UsuarioModificacion
+                                            where IdSucursal = @IdSucursal
+                                            ", sucursal);
         }
     }
 }

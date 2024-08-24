@@ -61,5 +61,64 @@ namespace SistemaSeguridad.Controllers
 
 			return Json(true);
 		}
+
+		public async Task<IActionResult> Borrar(int idSucursal)
+		{
+			var sucursal = await reposirorySucursal.ObtenerPorId(idSucursal);
+
+			if (sucursal is null)
+			{
+				return RedirectToAction("Index", "Sucursal");
+			}
+			return View(sucursal);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> BorrarSucursal(int idSucursal)
+		{
+			try
+			{
+				var sucursal = await reposirorySucursal.ObtenerPorId(idSucursal);
+				if (sucursal is null)
+				{
+					return RedirectToAction("Index", "Sucursal");
+				}
+				await reposirorySucursal.Borrar(idSucursal);
+				return RedirectToAction("Index");
+
+			}
+			catch (Exception ex)
+			{
+				throw new ApplicationException(ex + "No se puede borrar este registro");
+			}
+		}
+
+		[HttpGet]
+		public async Task<ActionResult> Editar(int idSucursal)
+		{
+			var sucursal = await reposirorySucursal.ObtenerPorId(idSucursal);
+
+			if (sucursal is null)
+			{
+				return RedirectToAction("Index", "Sucursal");
+			}
+
+			return View(sucursal);
+		}
+
+		[HttpPost]
+		public async Task<ActionResult> Editar(Sucursal sucursal)
+		{
+			sucursal.UsuarioModificacion = servicioUsuarios.ObtenerUsuarioId();
+			var sucursalExiste = await reposirorySucursal.ObtenerPorId(sucursal.IdSucursal);
+
+			if (sucursal is null)
+			{
+				return RedirectToAction("Index", "Sucursal");
+			}
+
+			await reposirorySucursal.ActualizarGeneral(sucursal);
+			return RedirectToAction("Index");
+		}
 	}
 }

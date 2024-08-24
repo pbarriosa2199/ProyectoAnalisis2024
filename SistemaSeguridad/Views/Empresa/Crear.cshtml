@@ -1,5 +1,101 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Empresa
+
 @{
+	ViewData["Title"] = "Crear Empresa";
+}
+
+<h1>Crear Empresa</h1>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Crear">
+    <div class="card">
+        <div class="card-header">
+            <h5>Datos generales</h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-2">
+                <label asp-for="Nombre" class="form-label"></label>
+                <input type="text" asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="Direccion" class="form-label"></label>
+                <input type="text" asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="Nit" class="form-label"></label>
+                <input type="text" asp-for="Nit" class="form-control" />
+                <span asp-validation-for="Nit" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5>Parametros</h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-2">
+                <label asp-for="PasswordCantidadMayusculas" class="form-label"></label>
+                <input type="text" asp-for="PasswordCantidadMayusculas" class="form-control" />
+                <span asp-validation-for="PasswordCantidadMayusculas" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="PasswordCantidadMinusculas" class="form-label"></label>
+                <input type="text" asp-for="PasswordCantidadMinusculas" class="form-control" />
+                <span asp-validation-for="PasswordCantidadMinusculas" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="PasswordCantidadCaracteresEspeciales" class="form-label"></label>
+                <input type="text" asp-for="PasswordCantidadCaracteresEspeciales" class="form-control" />
+                <span asp-validation-for="PasswordCantidadCaracteresEspeciales" class="text-danger"></span>
+            </div>
+            <div class="mb-2">
+                <label asp-for="PasswordCantidadCaducidadDias" class="form-label"></label>
+                <input type="text" asp-for="PasswordCantidadCaducidadDias" class="form-control" />
+                <span asp-validation-for="PasswordCantidadCaducidadDias" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="PasswordLargo" class="form-label"></label>
+                <input type="text" asp-for="PasswordLargo" class="form-control" />
+                <span asp-validation-for="PasswordLargo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="PasswordIntentosAntesDeBloquear" class="form-label"></label>
+                <input type="text" asp-for="PasswordIntentosAntesDeBloquear" class="form-control" />
+                <span asp-validation-for="PasswordIntentosAntesDeBloquear" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="PasswordCantidadNumeros" class="form-label"></label>
+                <input type="text" asp-for="PasswordCantidadNumeros" class="form-control" />
+                <span asp-validation-for="PasswordCantidadNumeros" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="PasswordCantidadPreguntasValidar" class="form-label"></label>
+                <input type="text" asp-for="PasswordCantidadPreguntasValidar" class="form-control" />
+                <span asp-validation-for="PasswordCantidadPreguntasValidar" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-dark">Enviar</button>
+            <a class="btn btn-secundary" asp-action="Index">Cancelar</a>
+        </div>
+
+    </div>
+
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

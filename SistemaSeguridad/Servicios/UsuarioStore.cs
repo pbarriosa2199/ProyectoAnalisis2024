@@ -31,9 +31,9 @@ namespace SistemaSeguridad.Servicios
 			return await repositoryUsuarios.BuscarUsuarioEmail(normalizedEmail);
 		}
 
-		public Task<UsuarioPrueba> FindByIdAsync(string userId, CancellationToken cancellationToken)
+		public async Task<UsuarioPrueba> FindByIdAsync(string userId, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			return await repositoryUsuarios.BuscarUsuarioNombre(userId);
 		}
 
 		public async Task<UsuarioPrueba> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)

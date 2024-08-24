@@ -1,11 +1,16 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using SistemaSeguridad.Models;
 using SistemaSeguridad.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var politicaUsuarioAutenticado = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(opciones => { 
+	opciones.Filters.Add(new AuthorizeFilter(politicaUsuarioAutenticado));
+});
 builder.Services.AddTransient<IRepositoryGenero, RepositoryGenero>();
 builder.Services.AddTransient<IServicioUsuarios, ServicioUsuarios>();
 builder.Services.AddTransient<IRepositoyEmpresa, RepositoryEmpresa>();
@@ -29,7 +34,7 @@ builder.Services.AddAuthentication(options =>
 	options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
 }).AddCookie(IdentityConstants.ApplicationScheme, opciones =>
 {
-	opciones.LoginPath = "/Usuario/Login";
+	opciones.LoginPath = "/UsuarioLogin/Login";
 
 });
 

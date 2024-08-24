@@ -4,7 +4,7 @@
 	ViewData["Title"] = "Listado de Empresas";
 }
 
-<h1>Listado de empresas ingresados</h1>
+<h1>Listado de empresas</h1>
 
 <a asp-action="Crear" class="btn btn-primary mb-3">Crear nuevo</a>
 
@@ -22,8 +22,8 @@
         {
             <tr>
                 <td>
-                    <a class="btn btn-primary">Editar</a>
-                    <a class="btn btn-danger">Borrar</a>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-IdEmpresa="@empresa.IdEmpresa">Editar</a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-IdEmpresa="@empresa.IdEmpresa">Borrar</a>
                 </td>
                 <td>
                     @empresa.Nombre

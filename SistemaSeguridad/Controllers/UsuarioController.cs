@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SistemaSeguridad.Models;
 using SistemaSeguridad.Servicios;
 using System.Security.Claims;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SistemaSeguridad.Controllers
 {
@@ -57,38 +59,35 @@ namespace SistemaSeguridad.Controllers
 			return View(modelo);
 		}
 
-		[HttpGet]
-		public IActionResult Login() 
-		{
-			return View();
-		}
-
-		[HttpPost]
-		public async Task<IActionResult> Login(LoginViewModel modelo) 
-		{
-			if (!ModelState.IsValid) 
-			{
-				return View(modelo);
-			}
-
-			var resultado = await signInManager.PasswordSignInAsync(modelo.IdUsuario, password:modelo.Password,
-																	modelo.Recuerdame, lockoutOnFailure:false);
-			if (resultado.Succeeded)
-			{
-				return RedirectToAction("Index", "Genero");
-			}
-			else 
-			{
-				ModelState.AddModelError(String.Empty, "Nombre de usuario o password incorrecto");
-				return View(modelo);
-			}
-		}
 
 		[HttpPost]
 		public async Task<IActionResult> Logout() 
 		{
 			await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
-			return RedirectToAction("Index", "Genero");
+			return RedirectToAction("Index", "Home");
 		}
-	}
+
+        public async Task<IActionResult> Perfil()
+        {
+			var usuarioLogin = await userManager.GetUserAsync(User);
+
+            if (usuarioLogin == null)
+            {
+                return NotFound("Usuario no encontrado");
+            }
+
+            var userId = usuarioLogin.IdUsuario;
+            var userName = usuarioLogin.Nombre;
+            var email = usuarioLogin.CorreoElectronico;
+
+            var model = new UsuarioPrueba
+            {
+                IdUsuario = userId,
+                Nombre = userName,
+                CorreoElectronico = email
+            };
+
+            return View(model);
+        }
+    }
 }

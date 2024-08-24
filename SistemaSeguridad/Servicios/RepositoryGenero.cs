@@ -13,7 +13,7 @@ namespace SistemaSeguridad.Servicios
         Task Crear(Genero genero);
         Task<bool> Existe(string nombre);
         Task<IEnumerable<Genero>> Obtener();
-        Task<Genero> ObtenerPorId(int idgenero, string usuarioCreacion);
+        Task<Genero> ObtenerPorId(int idgenero);
     }
     public class RepositoryGenero: IRepositoryGenero
     {
@@ -70,18 +70,19 @@ namespace SistemaSeguridad.Servicios
             using var connection = new SqlConnection(connectionString);
             //ExecuteAsync permite ejecutar un query que no va a retornar nada, seria un update
             //Lo que hace solo de acctualizar el registro con el id
-            await connection.ExecuteAsync(@"update GENERO set Nombre = @Nombre where IdGenero = @IdGenero", genero);
+            await connection.ExecuteAsync(@"update GENERO set Nombre = @Nombre,
+                                          FechaModificacion = GETDATE(), UsuarioModificacion = @UsuarioModificacion
+                                          where IdGenero = @IdGenero", genero);
         }
 
         //Se busca el registro por ID
-        public async Task<Genero> ObtenerPorId(int idgenero, string usuarioCreacion)
+        public async Task<Genero> ObtenerPorId(int idgenero)
         {
             //Se usa la variable conexion
             using var connection = new SqlConnection(connectionString);
             //Retorna el registro encontrado con el id para hacer el update
             return await connection.QueryFirstOrDefaultAsync<Genero>(@"select IdGenero, Nombre, FechaCreacion,UsuarioCreacion  
-                                                                        from GENERO where IdGenero = @idgenero and 
-                                                                        UsuarioCreacion = @usuarioCreacion", new {idgenero, usuarioCreacion});
+                                                                        from GENERO where IdGenero = @idgenero", new {idgenero});
         }
 
         public async Task Borrar(int idGenero) 
