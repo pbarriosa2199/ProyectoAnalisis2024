@@ -1,0 +1,37 @@
+﻿@model MenuCreacionViewModel
+
+@{
+	ViewData["Title"] = "Crear Menu";
+}
+
+<h1>Crear Menu</h1>
+<h5>Ingrese los campos para la creacion de menu</h5>
+
+<form asp-action="Crear">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="mb-3">
+		<label asp-for="Nombre" class="form-label"></label>
+		<input asp-for="Nombre" class="form-control" />
+		<span asp-validation-for="Nombre" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="OrdenMenu" class="form-label"></label>
+		<input asp-for="OrdenMenu" class="form-control" />
+		<span asp-validation-for="OrdenMenu" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="IdModulo" class="form-label"></label>
+		<select asp-for="IdModulo" asp-items="Model.Modulo" class="form-select"></select>
+		<span asp-validation-for="IdModulo" class="text-danger"></span>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Enviar</button>
+	<a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

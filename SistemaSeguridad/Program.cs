@@ -14,9 +14,14 @@ builder.Services.AddControllersWithViews(opciones => {
 builder.Services.AddTransient<IRepositoryGenero, RepositoryGenero>();
 builder.Services.AddTransient<IServicioUsuarios, ServicioUsuarios>();
 builder.Services.AddTransient<IRepositoyEmpresa, RepositoryEmpresa>();
+builder.Services.AddTransient<IRepositoryStatusUsuario, RepositoryStatusUsuario>();
+builder.Services.AddTransient<IRepositoryRole, RepositoryRole>();
+builder.Services.AddTransient<IRepositoryOpcion, RepositoryOpcion>();
+builder.Services.AddTransient<IRepositoryModulo, RepositoryModulo>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IReposirorySucursal, RepositorySucursal>();
 builder.Services.AddTransient<IRepositoryUsuarios, RepositoryUsuarios>();
+builder.Services.AddTransient<IRepositoryMenu, RepositoryMenu>();
 builder.Services.AddTransient<IUserStore<UsuarioPrueba>, UsuarioStore>();
 builder.Services.AddTransient<SignInManager<UsuarioPrueba>>();
 builder.Services.AddIdentityCore<UsuarioPrueba>(opciones =>

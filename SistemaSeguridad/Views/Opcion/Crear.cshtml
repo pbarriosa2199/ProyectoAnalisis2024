@@ -1,0 +1,43 @@
+﻿@model OpcionCreacionViewModel
+
+@{
+	ViewData["Title"] = "Crear Opcion";
+}
+
+<h1>Crear Opcion</h1>
+<h5>Ingrese los campos para la creacion de opcion</h5>
+
+<form asp-action="Crear">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="mb-3">
+		<label asp-for="Nombre" class="form-label"></label>
+		<input asp-for="Nombre" class="form-control" />
+		<span asp-validation-for="Nombre" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="OrdenMenu" class="form-label"></label>
+		<input asp-for="OrdenMenu" class="form-control" />
+		<span asp-validation-for="OrdenMenu" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Pagina" class="form-label"></label>
+		<input asp-for="Pagina" class="form-control" />
+		<span asp-validation-for="Pagina" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="IdMenu" class="form-label"></label>
+		<select asp-for="IdMenu" asp-items="Model.Menu" class="form-select"></select>
+		<span asp-validation-for="IdMenu" class="text-danger"></span>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Enviar</button>
+	<a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

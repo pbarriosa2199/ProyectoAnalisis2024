@@ -1,0 +1,28 @@
+﻿@model Modulo
+
+@{
+    ViewData["Title"] = "Crear Modulo";
+}
+
+<h1>Crear Modulo</h1>
+<h5>Agregar el tipo de modulo nuevo</h5>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Crear">
+    <div class="mb-2">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input type="text" asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="OrdenMenu" class="form-label"></label>
+        <input type="text" asp-for="OrdenMenu" class="form-control" />
+        <span asp-validation-for="OrdenMenu" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-dark">Enviar</button>
+    <a class="btn btn-secundary" asp-action="Index">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

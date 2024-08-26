@@ -58,6 +58,70 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Menu/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxCb3JyYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Menu/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Menu/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Menu/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Modulo/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kdWxvXEJvcnJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Modulo/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kdWxvXENyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Modulo/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kdWxvXEVkaXRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Modulo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kdWxvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Opcion/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BjaW9uXEJvcnJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Opcion/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BjaW9uXENyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Opcion/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BjaW9uXEVkaXRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Opcion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BjaW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Role/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxCb3JyYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Role/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Role/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Role/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -68,6 +132,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/StatusUsuario/Borrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhdHVzVXN1YXJpb1xCb3JyYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/StatusUsuario/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhdHVzVXN1YXJpb1xDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/StatusUsuario/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhdHVzVXN1YXJpb1xFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/StatusUsuario/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhdHVzVXN1YXJpb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/guamu/source/repos/SistemaSeguridad/SistemaSeguridad/Views/Sucursal/Borrar.cshtml]

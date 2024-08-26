@@ -1,0 +1,29 @@
+﻿@model Role
+
+@{
+    ViewData["Title"] = "Editar Role";
+}
+
+<h2>Editar role: @Model.Nombre</h2>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Editar">
+    <input type="hidden" asp-for="IdRole" />
+    <div class="card">
+        <div class="card-header">
+            <h5>Datos generales</h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-2">
+                <label asp-for="Nombre" class="form-label"></label>
+                <input type="text" asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-dark">Enviar</button>
+            <a class="btn btn-secundary" asp-action="Index">Cancelar</a>
+        </div>
+    </div>
+</form>
+
