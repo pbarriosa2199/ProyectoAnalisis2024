@@ -9,7 +9,7 @@ namespace SistemaSeguridad.Servicios
 		Task<UsuarioPrueba> BuscarUsuarioEmail(string CorreoElectronico);
 		Task<UsuarioPrueba> BuscarUsuarioNombre(string Nombre);
 		Task<string> CrearUsuario(UsuarioPrueba usuarioPrueba);
-	}
+    }
 	public class RepositoryUsuarios: IRepositoryUsuarios
 	{
 		private readonly string connectionString;

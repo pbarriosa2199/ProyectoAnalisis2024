@@ -99,7 +99,7 @@ namespace SistemaSeguridad.Servicios
 
 		public Task SetNormalizedUserNameAsync(UsuarioPrueba user, string normalizedName, CancellationToken cancellationToken)
 		{
-			user.Nombre = normalizedName;
+			//user.Nombre = normalizedName;
 			return Task.CompletedTask;
 		}
 

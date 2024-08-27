@@ -1,12 +1,54 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\guamu\\source\\repos\\SistemaSeguridad\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6E0281D1-CCBD-4C35-A822-9E0D849DD25D}|SistemaSeguridad\\SistemaSeguridad.csproj|c:\\users\\guamu\\source\\repos\\sistemaseguridad\\sistemaseguridad\\models\\usuariocreacionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E0281D1-CCBD-4C35-A822-9E0D849DD25D}|SistemaSeguridad\\SistemaSeguridad.csproj|solutionrelative:sistemaseguridad\\models\\usuariocreacionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E0281D1-CCBD-4C35-A822-9E0D849DD25D}|SistemaSeguridad\\SistemaSeguridad.csproj|c:\\users\\guamu\\source\\repos\\sistemaseguridad\\sistemaseguridad\\servicios\\usuariostore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E0281D1-CCBD-4C35-A822-9E0D849DD25D}|SistemaSeguridad\\SistemaSeguridad.csproj|solutionrelative:sistemaseguridad\\servicios\\usuariostore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioCreacionViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\guamu\\source\\repos\\SistemaSeguridad\\SistemaSeguridad\\Models\\UsuarioCreacionViewModel.cs",
+              "RelativeDocumentMoniker": "SistemaSeguridad\\Models\\UsuarioCreacionViewModel.cs",
+              "ToolTip": "C:\\Users\\guamu\\source\\repos\\SistemaSeguridad\\SistemaSeguridad\\Models\\UsuarioCreacionViewModel.cs",
+              "RelativeToolTip": "SistemaSeguridad\\Models\\UsuarioCreacionViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T23:58:07.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioStore.cs",
+              "DocumentMoniker": "C:\\Users\\guamu\\source\\repos\\SistemaSeguridad\\SistemaSeguridad\\Servicios\\UsuarioStore.cs",
+              "RelativeDocumentMoniker": "SistemaSeguridad\\Servicios\\UsuarioStore.cs",
+              "ToolTip": "C:\\Users\\guamu\\source\\repos\\SistemaSeguridad\\SistemaSeguridad\\Servicios\\UsuarioStore.cs",
+              "RelativeToolTip": "SistemaSeguridad\\Servicios\\UsuarioStore.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T23:57:45.101Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

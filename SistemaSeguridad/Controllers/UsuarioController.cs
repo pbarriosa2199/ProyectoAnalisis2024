@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SistemaSeguridad.Models;
 using SistemaSeguridad.Servicios;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -14,6 +15,7 @@ namespace SistemaSeguridad.Controllers
 		private readonly UserManager<UsuarioPrueba> userManager;
 		private readonly IServicioUsuarios servicioUsuarios;
 		private readonly SignInManager<UsuarioPrueba> signInManager;
+		private readonly RepositoryUsuarios repositoryUsuarios;
 
 		public UsuarioController(UserManager<UsuarioPrueba> userManager, IServicioUsuarios servicioUsuarios,
 			SignInManager<UsuarioPrueba> signInManager)
@@ -22,6 +24,11 @@ namespace SistemaSeguridad.Controllers
 			this.servicioUsuarios = servicioUsuarios;
 			this.signInManager = signInManager;
 		}
+
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         public IActionResult Registro() 
 		{
@@ -46,8 +53,8 @@ namespace SistemaSeguridad.Controllers
 
 			if (resultado.Succeeded)
 			{
-				await signInManager.SignInAsync(usuario, isPersistent: true);
-				return RedirectToAction("Index", "Genero");
+				//await signInManager.SignInAsync(usuario, isPersistent: false);
+				return RedirectToAction("Index", "Home");
 			}
 			else 
 			{
@@ -79,12 +86,14 @@ namespace SistemaSeguridad.Controllers
             var userId = usuarioLogin.IdUsuario;
             var userName = usuarioLogin.Nombre;
             var email = usuarioLogin.CorreoElectronico;
+			var password = usuarioLogin.Password;
 
             var model = new UsuarioPrueba
             {
                 IdUsuario = userId,
                 Nombre = userName,
-                CorreoElectronico = email
+                CorreoElectronico = email,
+				Password = password
             };
 
             return View(model);

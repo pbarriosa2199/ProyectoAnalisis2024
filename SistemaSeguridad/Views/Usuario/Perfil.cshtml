@@ -25,5 +25,11 @@
 		<span asp-validation-for="CorreoElectronico" class="text-danger"></span>
 	</div>
 
-	<button class="btn btn-primary">Registro</button>
+	<div class="mb-3">
+		<label asp-for="Password" class="form-label"></label>
+		<input asp-for="Password" class="form-control" />
+		<span asp-validation-for="Password" class="text-danger"></span>
+	</div>
+
+	<button class="btn btn-primary">Editar</button>
 </form>
